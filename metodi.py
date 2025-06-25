@@ -27,3 +27,9 @@ for componente in nx.strongly_connected_components(grafo):
     if nodoCercaro in componente:
         componenteTrovata = componente.copy.deepcopy()
 #comp connessa per un grafo ORIENTATO
+
+
+adiacenti = list(self.grafo[nodo].items())
+#trova i nodi adiacenti in una lista di tuple
+# tupla = (nodo, {"peso": 5}
+# peso = tupla[1][["peso"]
