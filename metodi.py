@@ -37,3 +37,19 @@ adiacenti = list(self.grafo[nodo].items())
 
 edges = list(itertools.combinations(self.squadre, 2))
 Questa riga genera tutte le coppie possibili di squadre (senza ripetizioni né inversioni), tratte dalla lista self.squadre.
+
+
+
+#questo trova gli archi vicini e il rispettivo peso
+ def getNeighborsSorted(self, source):
+        vicini = nx.neighbors(self._grafo, source)  # [v0 v1 v2 ...]
+        # vicini = self._grafo.neighbors(source)
+
+        viciniTuple = []
+
+        for v in vicini:
+            viciniTuple.append((v, self._grafo[source][v]["weight"]))  # [(v0, p0) (v1, p1) ()]
+
+        viciniTuple.sort(key=lambda x: x[1], reverse=True)
+        return viciniTuple
+
