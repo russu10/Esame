@@ -24,62 +24,70 @@ def isNovel(self, ARCO, parziale):
 # MAGGIORE RISPETTO A TUTTO IL PESO DI PARZIALE
 #IN UN GRAFO NON ORIENTATO
 
+#PROVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+from database.DB_connect import DBConnect
+from model.Circuito import Circuito
+
+class DAO:
+
+    @staticmethod
+    def getCircuitiConRisultati():
+        conn = DBConnect.get_connection()
+        results = {}
+
+        cursor = conn.cursor(dictionary=True)
+        query = """
+            SELECT 
+                c.circuitId, c.name, c.location, c.country,
+                r.year,
+                d.forename, d.surname,
+                rs.position
+            FROM results rs
+            JOIN races r ON rs.raceId = r.raceId
+            JOIN circuits c ON r.circuitId = c.circuitId
+            JOIN drivers d ON rs.driverId = d.driverId
+            WHERE rs.position IS NOT NULL
+              AND r.year BETWEEN 2010 AND 2020
+            ORDER BY c.circuitId, r.year, rs.position
+        """
+
+        cursor.execute(query)
+
+        for row in cursor:
+            circuitId = row["circuitId"]
+            year = row["year"]
+            posizione = int(row["position"])
+            pilota = f"{row['forename']} {row['surname']}"
+
+            if circuitId not in results:
+                results[circuitId] = Circuito(
+                    id=circuitId,
+                    nome=row["name"],
+                    location=row["location"],
+                    country=row["country"]
+                )
+
+            results[circuitId].aggiungi_risultato(year, posizione, pilota)
+
+        cursor.close()
+        conn.close()
+        return list(results.values())
 
 
-import sqlite3
+from dataclasses import dataclass, field
+from typing import Dict, List, Tuple
 
+@dataclass
 class Circuito:
-    def __init__(self, id, nome, location, country):
-        self.id = id
-        self.nome = nome
-        self.location = location
-        self.country = country
-        self.storico_posizioni = {}  # {anno: [(posizione, pilota)]}
+    id: int
+    nome: str
+    location: str
+    country: str
+    storico_posizioni: Dict[int, List[Tuple[int, str]]] = field(default_factory=dict)
 
-    def aggiungi_risultato(self, anno, posizione, pilota):
+    def aggiungi_risultato(self, anno: int, posizione: int, pilota: str):
         if anno not in self.storico_posizioni:
             self.storico_posizioni[anno] = []
         self.storico_posizioni[anno].append((posizione, pilota))
-
-    def __repr__(self):
-        return f"Circuito({self.nome}, {self.country}) -> {self.storico_posizioni}"
-
-
-# Connessione al database
-conn = sqlite3.connect("tuo_database.db")
-cur = conn.cursor()
-
-# -- getCircuiti --
-cur.execute("SELECT circuitId, name, location, country FROM circuits")
-circuiti_data = cur.fetchall()
-
-# Crea oggetti Circuito
-circuiti = {}
-for circuito_id, nome, location, country in circuiti_data:
-    circuiti[circuito_id] = Circuito(circuito_id, nome, location, country)
-
-# -- getRisultati tra 2010 e 2020 --
-cur.execute("""
-    SELECT c.circuitId, r.year, rs.position, d.forename || ' ' || d.surname
-    FROM results rs
-    JOIN races r ON rs.raceId = r.raceId
-    JOIN circuits c ON r.circuitId = c.circuitId
-    JOIN drivers d ON rs.driverId = d.driverId
-    WHERE rs.position IS NOT NULL AND r.year BETWEEN 2010 AND 2020
-    ORDER BY r.year, c.name, rs.position
-""")
-
-# Collega risultati ai circuiti
-for circuito_id, anno, posizione, nome_pilota in cur.fetchall():
-    circuito = circuiti.get(circuito_id)
-    if circuito:
-        circuito.aggiungi_risultato(anno, posizione, nome_pilota)
-
-conn.close()
-
-# ✅ Esempio stampa
-for circuito in circuiti.values():
-    if circuito.storico_posizioni:  # Mostra solo i circuiti con risultati nel range
-        print(circuito)
-
 
