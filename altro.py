@@ -82,4 +82,4 @@ for circuito in circuiti.values():
     if circuito.storico_posizioni:  # Mostra solo i circuiti con risultati nel range
         print(circuito)
 
-ciao 
+
