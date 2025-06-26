@@ -7,3 +7,6 @@
 Il metodo fetchall() restituisce tutte le righe del risultato di una query SQL eseguita con cursor.execute(...).
 
 Restituisce una lista di tuple, dove ogni tupla rappresenta una riga.
+
+
+  htytuytuy
