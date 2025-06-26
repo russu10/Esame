@@ -58,3 +58,26 @@ Percorso minimo da A a F: ['A', 'B', 'D', 'F']
 def getShortestPath(self, u, v):
     return nx.single_source_dijkstra(self._grafo, u, v)
 # dijkstra tra nodo 1 e nodo 2, cammino peso minimo
+
+
+
+#CAMMINO LUNGO PARTENDO DA UN NODO
+ def getCammino(self, sourceStr):
+        source = self._idMap[int(sourceStr)]
+        lp = []
+
+        #for source in self._graph.nodes:
+        tree = nx.dfs_tree(self._graph, source)
+        nodi = list(tree.nodes())
+
+        for node in nodi:
+            tmp = [node]
+
+            while tmp[0] != source:
+                pred = nx.predecessor(tree, source, tmp[0])
+                tmp.insert(0, pred[0])
+
+            if len(tmp) > len(lp):
+                lp = copy.deepcopy(tmp)
+
+        return lp
