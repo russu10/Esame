@@ -33,3 +33,7 @@ adiacenti = list(self.grafo[nodo].items())
 #trova i nodi adiacenti in una lista di tuple
 # tupla = (nodo, {"peso": 5}
 # peso = tupla[1][["peso"]
+
+
+edges = list(itertools.combinations(self.squadre, 2))
+Questa riga genera tutte le coppie possibili di squadre (senza ripetizioni né inversioni), tratte dalla lista self.squadre.
