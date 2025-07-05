@@ -17,3 +17,6 @@ for componente in nx.strongly_connected_components(grafo):
 
 list(nx.connected_components(self.grafo))
 #trova la lista delle componenti connesse del grafo
+
+list((max(nx.connected_components(self.grafo), key=len)))
+#restituisce la comp connessa piu lunga

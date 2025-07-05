@@ -27,3 +27,14 @@ def isNovel(self, ARCO, parziale):
 for c in connesse:
     nodi_str = ", ".join(str(n) for n in c)
 #per stampare senza andare a capo
+
+list(risultati.keys())
+#restituisce la lista delle chiavi del dizionario risultati
+
+len(risultati.values())
+#lunghezza valori del dizionario risultati
+
+ordinati = sorted(adiacenti, key=lambda x: x[1].get("peso", 0), reverse=True)
+#ordina la lista e dice che se esite peso lo ordina desc se no usa 0
+#adiacenti è una lista di tuple ( nodo , dizionario peso)
+

@@ -22,3 +22,22 @@ adiacenti = list(self.grafo[nodo].items())
 for nodo in nodi:
     self.idMap[nodo.GeneID] = nodo
 #idmpap
+
+peso = grafo[nodo1][nodo2]["peso"]
+#per trovare il peso dell arco tra nodo1 e nodo 2
+
+list(grafo.edges(data=true))
+#resitituisce una lista di tuple ( nodo1, nodo2 , dizionario del peso)
+
+list(grafo.edges)
+#resituisce unalista di  tuple ( nodo1, nodo2) se hanno un arco
+
+nx.dfs_successors(self.graph, source).values()
+# lista successori
+
+nx.dfs_predecessors(self.graph, source).values()
+
+#lista predecessori
+
+nx.dfs_tree(self.graph,source)
+#albero visita (non ancora listato)
