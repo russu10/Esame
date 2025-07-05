@@ -23,3 +23,7 @@ def isNovel(self, ARCO, parziale):
 # QUESTE TRE FUNZIONI TROVANO GLI ARCHI VICINI E CHE ABBIANO PESO
 # MAGGIORE RISPETTO A TUTTO IL PESO DI PARZIALE
 #IN UN GRAFO NON ORIENTATO
+
+for c in connesse:
+    nodi_str = ", ".join(str(n) for n in c)
+#per stampare senza andare a capo
