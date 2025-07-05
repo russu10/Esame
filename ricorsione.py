@@ -1,4 +1,44 @@
-"""def getDreamTeam(self, k):
+#ESAME GENE
+def getMax(self):
+    self.bestTeam = []
+    self.bestScore = 0
+    self.bestLen = 0
+    allNodes = list(self.grafo.nodes())
+    allNodes.sort(key=lambda x: x.GeneID)
+    for nodo in allNodes:
+        rimanenti = copy.deepcopy(allNodes)
+        rimanenti.remove(nodo)
+        rimanenti1 = []
+        for x in rimanenti:
+            if x.Essential == nodo.Essential:
+                rimanenti1.append(x)
+        self.ricorsione([nodo], list(rimanenti1))
+    return self.bestTeam, self.bestScore, self.bestLen
+
+
+def ricorsione(self, parziale, rimanenti):
+    if len(rimanenti) == 0:
+
+        if len(parziale) > self.bestLen:
+            self.bestLen = len(parziale)
+            self.bestScore = self.getScore(parziale)
+            self.bestTeam = copy.deepcopy(parziale)
+        if len(parziale) == self.bestLen:
+            if self.getScore(parziale) < self.bestScore:
+                self.bestScore = self.getScore(parziale)
+                self.bestTeam = copy.deepcopy(parziale)
+        return
+
+    for n in rimanenti:
+        if n.GeneID > parziale[-1].GeneID:
+            parziale.append(n)
+            rimanenti.remove(n)
+            self.ricorsione(parziale, rimanenti)
+            parziale.remove(n)
+            rimanenti.append(n)
+
+#ESAME FORMULA 1
+def getDreamTeam(self, k):
     self._bestPath = []
     self._bestScore = 1000
 
@@ -26,11 +66,11 @@ def getScore(self, team):
     for e in self._graph.edges(data=True):
         if e[0] not in team and e[1] in team:
             score += e[2]["weight"]
-    return score"""
+    return score
 
 
 #ALGORITMO RICORSIVO CAMMINO PESO MASSIMO IN GRAFO ORIENTATO
-"""def getBestPath(self, startStr):
+def getBestPath(self, startStr):
         self._bestPath = []
         self._bestScore = 0
 
@@ -53,7 +93,8 @@ def getScore(self, team):
         for v in self._graph.neighbors(parziale[-1]):
             if (v not in parziale and #check if not in parziale
                     self._graph[parziale[-2]][parziale[-1]]["weight"] >
-                    self._graph[parziale[-1]][v]["weight"]): #check if peso nuovo arco è minore del precedente
+                    self._graph[parziale[-1]][v]["weight"]):
+                #check if peso nuovo arco è minore del precedente
                 parziale.append(v)
                 self._ricorsione(parziale)
                 parziale.pop()
@@ -65,4 +106,4 @@ def getScore(self, team):
 
         return tot
     def getStores(self):
-        return DAO.getAllStores()"""
+        return DAO.getAllStores()

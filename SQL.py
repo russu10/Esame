@@ -63,3 +63,25 @@ HAVING
                 and oi2.order_id  = o2.order_id
                 and DATEDIFF(o1.order_Date, o2.order_date) < %s
                 group by o1.order_id, o2.order_id"""
+
+
+"""SELECTt DISTINCT i.GeneID1 as id1, i.GeneID2 as id2, t.somma as peso
+FROM genes g1, genes g2, classification c1, classification c2, interactions i,
+     (SELECT g1.GeneID AS id1, g2.GeneID AS id2,
+             CASE 
+                 WHEN g1.Chromosome = g2.Chromosome THEN g1.Chromosome
+                 ELSE g1.Chromosome + g2.Chromosome
+             END AS somma
+      FROM genes g1, genes g2
+      WHERE g1.Chromosome <= g2.Chromosome
+      GROUP BY g1.GeneID, g2.GeneID) AS t
+WHERE g1.GeneID <> g2.GeneID
+  AND c1.GeneID = g1.GeneID
+  AND g2.GeneID = c2.GeneID
+  AND c1.Localization = %s
+  AND c2.Localization = c1.Localization
+  AND i.GeneID1 = g1.GeneID
+  AND i.GeneID2 = g2.GeneID
+  AND t.id1 = g1.GeneID
+  AND t.id2 = g2.GeneID"""
+#c e un if all interno della query
