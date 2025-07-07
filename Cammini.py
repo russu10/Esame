@@ -81,3 +81,4 @@ def getShortestPath(self, u, v):
                 lp = copy.deepcopy(tmp)
 
         return lp
+prova
