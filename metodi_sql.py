@@ -1,3 +1,6 @@
+# se il collegamento di due nodi dipende dall'esistenza di una cosa in un altra tabella
+# fare 4 tabelle, collega 1-3 e 2-4
+# collega 3-4 in caso
 """datediff(data1,data2)"""
 #trova la differenza in giorni
 
