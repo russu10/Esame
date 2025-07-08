@@ -1,3 +1,50 @@
+#Esame gene luglio 2024
+def getCammino(self):
+    self.percorso = []
+    self.lunghezzaMax = 0
+    nodi = list(self.grafo.nodes())
+    for nodo in nodi:
+        self.ricorsione([nodo])
+
+    return self.percorso , self.lunghezzaMax , self.calcolaPeso(self.percorso)
+def ricorsione(self,parziale):
+    rimanenti = self.calcolaRimanenti(parziale[-1])
+    if len(rimanenti) == 0:
+        if len(parziale) > self.lunghezzaMax:
+            self.lunghezzaMax = len(parziale)
+            self.percorso = copy.deepcopy(parziale)
+        if len(parziale) == self.lunghezzaMax:
+            if self.calcolaPeso(parziale) < self.calcolaPeso(self.percorso):
+                self.lunghezzaMax = len(parziale)
+                self.percorso = copy.deepcopy(parziale)
+        return
+
+    for nodo in rimanenti:
+        if nodo not in parziale:
+            if len(parziale) ==1:
+                parziale.append(nodo)
+                self.ricorsione(parziale)
+                parziale.pop()
+            else:
+                if self.grafo[parziale[-1]][nodo]["peso"] >= self.grafo[parziale[-2]][parziale[-1]]["peso"]:
+                    parziale.append(nodo)
+                    self.ricorsione(parziale)
+                    parziale.pop()
+
+def calcolaRimanenti(self,nodo):
+    vicini = list(self.grafo.neighbors(nodo))
+    viciniOk = []
+    for v in vicini:
+        if v.Essential != nodo.Essential:
+            viciniOk.append(v)
+    return viciniOk
+def calcolaPeso(self,parziale):
+    pesoTot = 0
+    for i in range(0,len(parziale)-1):
+        pesoTot += self.grafo[parziale[i]][parziale[i+1]]["peso"]
+    return pesoTot
+
+
 #ESAME GENE
 def getMax(self):
     self.bestTeam = []
