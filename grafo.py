@@ -9,6 +9,8 @@ ARCHI_VICINI = GRAFO.edges(NODO, data=True)
 
 self._graph.out_edges(nodo, data=True):
 #RESTITUISCE GLI ARCHI USCENTI
+# del tipo (nodo1,nodo2,data)
+#peso = data["peso"]
 
 self._graph.neighbors(start)
 #trova i nodi vicini  uscenti in un grafo orientato
