@@ -20,3 +20,5 @@
 WHEN EVENTO 1 THEN SOLUZIONE 1
 ELSE SOLUZIONE 2
 END"""
+max(s.lat) o min()
+# trovano il massimo e minimo dei vaori selezionati
