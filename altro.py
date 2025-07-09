@@ -38,3 +38,7 @@ ordinati = sorted(adiacenti, key=lambda x: x[1].get("peso", 0), reverse=True)
 #ordina la lista e dice che se esite peso lo ordina desc se no usa 0
 #adiacenti è una lista di tuple ( nodo , dizionario peso)
 
+ordinati = sorted(trovati,key = lambda x: x[1], reverse = True)
+# ordina una lista di tuple(trovati)
+
+
