@@ -43,3 +43,62 @@ to_undirected	UG = G.to_undirected() # Converte in grafo non orientato
 Metodo	Esempio
 adjlist_inner_dict_factory	G.adjlist_inner_dict_factory() # Metodo interno di costruzione dizionario
 adjlist_outer_dict_factory	G.adjlist_outer_dict_factory() # Come sopra, livello esterno
+
+ALGORITMI DI NX
+ COMPONENTI CONNESSE
+Richiede grafi non orientati (oppure si usano versioni "fortemente connesse" per grafi orientati)
+
+Funzione	Esempio	Descrizione
+nx.is_connected(G)	nx.is_connected(G)	True se il grafo è connesso
+nx.connected_components(G)	list(nx.connected_components(G))	Insiemi di nodi delle componenti
+nx.number_connected_components(G)	nx.number_connected_components(G)	Numero totale di componenti
+nx.node_connected_component(G, n)	nx.node_connected_component(G, 1)	Componente che include il nodo 1
+
+🔁 Per grafi orientati, usa:
+
+nx.is_strongly_connected(DG)
+
+nx.strongly_connected_components(DG)
+
+nx.is_weakly_connected(DG)
+
+🚶 CAMMINI MINIMI
+Funziona sia su grafi orientati che non orientati
+
+Funzione	Esempio	Descrizione
+nx.shortest_path(G, source, target)	nx.shortest_path(G, 1, 5)	Cammino più breve (non pesato)
+nx.shortest_path_length(G, source, target)	nx.shortest_path_length(G, 1, 5)	Lunghezza del cammino
+nx.all_shortest_paths(G, s, t)	list(nx.all_shortest_paths(G, 1, 5))	Tutti i cammini più brevi
+nx.single_source_shortest_path(G, s)	nx.single_source_shortest_path(G, 1)	Tutti i cammini da 1
+nx.single_source_shortest_path_length(G, s)	nx.single_source_shortest_path_length(G, 1)	Lunghezze da 1
+nx.shortest_path(G, weight='peso')	nx.shortest_path(G, 1, 5, weight='distanza')	Cammino più breve con pesi
+nx.dijkstra_path(G, 1, 5)	Cammino minimo con pesi usando Dijkstra	
+nx.bellman_ford_path(G, 1, 5)	Supporta pesi negativi	
+
+🌳 ALBERI E MINIMI CAMMINI
+Funzione	Esempio	Descrizione
+nx.minimum_spanning_tree(G)	T = nx.minimum_spanning_tree(G)	Albero di copertura minimo
+nx.dfs_tree(G, source)	T = nx.dfs_tree(G, 0)	Albero DFS dal nodo sorgente
+nx.bfs_tree(G, source)	T = nx.bfs_tree(G, 0)	Albero BFS dal nodo sorgente
+
+🔄 CICLI E ANELLI
+Funzione	Esempio	Descrizione
+nx.find_cycle(G)	nx.find_cycle(G)	Ritorna un ciclo nel grafo
+nx.simple_cycles(DG)	list(nx.simple_cycles(DG))	Tutti i cicli in un grafo orientato
+nx.cycle_basis(G)	nx.cycle_basis(G)	Trova un insieme di base di cicli
+
+🧠 CENTRALITÀ (analisi dei nodi)
+Funzione	Esempio	Descrizione
+nx.degree_centrality(G)	nx.degree_centrality(G)	Centralità di grado
+nx.closeness_centrality(G)	nx.closeness_centrality(G)	Vicinanza media
+nx.betweenness_centrality(G)	nx.betweenness_centrality(G)	Quante volte un nodo è "ponte"
+nx.eigenvector_centrality(G)	nx.eigenvector_centrality(G)	Influenza complessiva
+nx.pagerank(G)	nx.pagerank(G)	Versione del PageRank di Google
+
+📈 COMPONENTI E STATI STRUTTURALI
+Funzione	Esempio	Descrizione
+nx.diameter(G)	nx.diameter(G)	Diametro del grafo
+nx.radius(G)	nx.radius(G)	Raggio del grafo
+nx.center(G)	nx.center(G)	Nodi centrali
+nx.periphery(G)	nx.periphery(G)	Nodi più distanti
+nx.eccentricity(G)	nx.eccentricity(G)	Massima distanza da ogni nodo
