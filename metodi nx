@@ -1,0 +1,45 @@
+METODI NX
+🧱 Aggiunta di nodi e archi
+Metodo	Esempio
+add_node	G.add_node(4) # Aggiunge un nodo 4 al grafo
+add_nodes_from	G.add_nodes_from([4, 5]) # Aggiunge più nodi
+add_edge	G.add_edge(4, 5) # Aggiunge un arco tra 4 e 5
+add_edges_from	G.add_edges_from([(4, 5), (5, 6)]) # Aggiunge più archi
+add_weighted_edges_from	G.add_weighted_edges_from([(1, 2, 0.5)]) # Arco con peso
+
+🔍 Accesso e interrogazioni
+Metodo	Esempio
+adjacency	list(G.adjacency()) # Restituisce gli adiacenti di ogni nodo
+edges	list(G.edges()) # Lista di archi
+nodes	list(G.nodes()) # Lista di nodi
+degree	list(G.degree()) # Grado di ogni nodo
+neighbors	list(G.neighbors(1)) # Vicini del nodo 1
+
+🔄 Modifica e gestione
+Metodo	Esempio
+clear	G.clear() # Rimuove tutti i nodi e archi
+clear_edges	G.clear_edges() # Rimuove solo gli archi
+remove_node	G.remove_node(3) # Rimuove il nodo 3
+remove_nodes_from	G.remove_nodes_from([1, 2]) # Rimuove più nodi
+remove_edge	G.remove_edge(1, 2) # Rimuove l'arco (1,2)
+remove_edges_from	G.remove_edges_from([(1, 2), (2, 3)]) # Rimuove più archi
+
+❓ Verifiche e proprietà
+Metodo	Esempio
+has_node	G.has_node(1) # True se il nodo esiste
+has_edge	G.has_edge(1, 2) # True se l'arco esiste
+is_directed	G.is_directed() # False per Graph (non orientato)
+number_of_nodes	G.number_of_nodes() # Numero di nodi
+number_of_edges	G.number_of_edges() # Numero di archi
+
+🔧 Conversioni e copie
+Metodo	Esempio
+copy	H = G.copy() # Crea una copia del grafo
+subgraph	H = G.subgraph([1, 2]) # Sottografo indotto da [1, 2]
+to_directed	DG = G.to_directed() # Converte in grafo orientato
+to_undirected	UG = G.to_undirected() # Converte in grafo non orientato
+
+🏗️ Fabbriche (usate raramente direttamente)
+Metodo	Esempio
+adjlist_inner_dict_factory	G.adjlist_inner_dict_factory() # Metodo interno di costruzione dizionario
+adjlist_outer_dict_factory	G.adjlist_outer_dict_factory() # Come sopra, livello esterno
