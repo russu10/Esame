@@ -38,8 +38,14 @@ nx.dfs_successors(self.graph, source).values()
 # lista successori
 
 nx.dfs_predecessors(self.graph, source).values()
-
 #lista predecessori
+
+nx.shortest_path(self.grafo, source=a1, target=a2)
+# trova il percorso piu corto 
+
 
 nx.dfs_tree(self.graph,source)
 #albero visita (non ancora listato)
+
+nx.has_path(self.grafo, a1, a2):
+# valore boolean e dice se c è percorso
