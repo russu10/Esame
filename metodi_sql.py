@@ -22,3 +22,6 @@ ELSE SOLUZIONE 2
 END"""
 max(s.lat) o min()
 # trovano il massimo e minimo dei vaori selezionati
+
+between %s and %s
+# tra due valori (compresi)
